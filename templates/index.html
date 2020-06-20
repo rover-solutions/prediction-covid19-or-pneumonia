@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction of Covid-19 or Pneumonia</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+</head>
+<body>
+    <header>
+        Predict between Covid-19 or Pneumonia
+    </header>
+    <section>
+        <form class="form-toolbar" enctype="multipart/form-data">
+            <input type="file" id="file-input" name="image"/>
+            <input type="submit" id="send-image">
+        </form>
+        <div class="toolbar">
+            <button id="btn-upload" onclick="chooseFile()">Upload</button>
+            <button id="btn-predict" onclick="predict()">Predict</button>
+        </div>
+        <div class="content-image">
+            <div id="no-image">
+                Upload an x-ray image of a suspected lung
+            </div>
+            <img id="image" width="50%">
+        </div>
+        <div class="content-answer" id="response">
+
+        </div>
+    </section>
+    <footer>
+        <div>
+            Authors: Carlos Henrique Ponciano da Silva & Vinicius Luis da Silva
+        </div>
+        <div id="github">
+            <a href="https://github.com/chsponciano/prediction-covid19-or-pneumonia" target="_blank">Link GitHub Repository</a>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='actions.js') }}"></script>
+</body>
+</html>
