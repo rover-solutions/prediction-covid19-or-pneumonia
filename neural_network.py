@@ -82,7 +82,7 @@ def training(dataset='/dataset/', batch_size=32, input_shape=(150, 150, 3), rand
 
 def prediction(path):
     try: 
-        _model = models.load_model('E:\\BCC\\7_Semestre\\Processamento de Imagem\\prediction-covid19-or-pneumonia\\models\\transferlearning_weights.hdf5')
+        _model = models.load_model(get_model_path())
         _image = np.array([functions.select_image(path)]) / 255.0
         _predict = _model.predict(_image)
         return functions.prediction_output(_predict[0])
