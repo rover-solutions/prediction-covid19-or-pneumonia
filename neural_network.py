@@ -62,7 +62,7 @@ def build_model(input_shape, _percentage_droput=0.6):
     return _model
 
 def training(dataset='\\dataset\\', batch_size=32, input_shape=(150, 150, 3), random_state=42, alpha=1e-5, epochs=100):
-    # try:
+    try:
         print('Training neural network...')
         _images, _labels = functions.select_dataset(functions.get_current_path() + dataset)
         _images, _labels = normalize(_images, _labels)
@@ -78,9 +78,9 @@ def training(dataset='\\dataset\\', batch_size=32, input_shape=(150, 150, 3), ra
                             epochs=epochs)
         print('Neural network training completed!')
         return True
-    # except Exception as e:
-    #     print(f'Training error: {e}')
-    #     return False
+    except Exception as e:
+        print(f'Training error: {e}')
+        return False
 
 def prediction(path):
     try: 
