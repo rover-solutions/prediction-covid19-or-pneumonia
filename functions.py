@@ -15,22 +15,23 @@ def select_image(filename):
 
 def load_class(directory, label_class, images, labels):
     for filename in listdir(directory):
-        path = directory + filename
+        _path = directory + filename
         try:
-            images.append(select_image(path))
+            images.append(select_image(_path))
             labels.append(label_class)
         except:
-            print(f'Error loading image {path}')
+            print(f'Error loading image {_path}')
     return images, labels
 
 def select_dataset(directory):
-    images = labels = list()
+    _images = list()
+    _labels = list()
     for subdir in listdir(directory):
-        path = directory + subdir + '/'
-        if not isdir(path):
+        _path = directory + subdir + '/'
+        if not isdir(_path):
             continue
-        images, labels = load_class(path, subdir, images, labels)
-    return images, labels
+        _images, _labels = load_class(_path, subdir, _images, _labels)
+    return _images, _labels
 
 def prediction_output(predict):
     print(predict)

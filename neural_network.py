@@ -28,11 +28,11 @@ def apply_data_augmentation(x_train, y_trian, batch_size):
 
 def normalize(images, labels):
     global _labelBinarizer
-    imagens = np.array(imagens) / 255.0
+    images = np.array(images) / 255.0
     labels = np.array(labels)
     labels = _labelBinarizer.fit_transform(labels)
     labels = to_categorical(labels)
-    return imagens, labels
+    return images, labels
 
 def load_base_network(input_shape, _set_trainable=False, _trainable_layer='block5_conv1'):
     _base = VGG19(weights='imagenet', include_top=False, input_shape=input_shape)
@@ -45,10 +45,13 @@ def load_base_network(input_shape, _set_trainable=False, _trainable_layer='block
             layer.trainable = True
         else:
             layer.trainable = False
+    
+    return _base
 
-def build_model(base_network, _percentage_droput=0.6):
+def build_model(input_shape, _percentage_droput=0.6):
+    _base_network = load_base_network(input_shape)
     _model = models.Sequential()
-    _model.add(base_network)
+    _model.add(_base_network)
     _model.add(layers.GlobalAveragePooling2D())
     _model.add(layers.BatchNormalization())
     _model.add(layers.Dense(128, activation='relu'))
@@ -58,16 +61,15 @@ def build_model(base_network, _percentage_droput=0.6):
     _model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
     return _model
 
-def training(dataset='/dataset/', batch_size=32, input_shape=(150, 150, 3), random_state=42, alpha=1e-5, epochs=100):
-    try:
+def training(dataset='\\dataset\\', batch_size=32, input_shape=(150, 150, 3), random_state=42, alpha=1e-5, epochs=100):
+    # try:
         print('Training neural network...')
-        _images, _labels = functions.select_dataset(dataset)
+        _images, _labels = functions.select_dataset(functions.get_current_path() + dataset)
         _images, _labels = normalize(_images, _labels)
         _callbacks = get_callbacks(alpha)
         (_x_train, _x_test, _y_train, _y_test) = train_test_split(_images, _labels, test_size=0.20, stratify=_labels, random_state=random_state)
         _data_augmentation = apply_data_augmentation(_x_train, _y_train, batch_size)
-        _base_network = load_base_network(input_shape)
-        _model = build_model(_base_network)
+        _model = build_model(input_shape)
         _model.fit_generator(_data_augmentation,
                             steps_per_epoch=len(_x_train) // batch_size,
                             validation_data=(_x_test, _y_test),
@@ -76,9 +78,9 @@ def training(dataset='/dataset/', batch_size=32, input_shape=(150, 150, 3), rand
                             epochs=epochs)
         print('Neural network training completed!')
         return True
-    except Exception as e:
-        print(f'Training error: {e}')
-        return False
+    # except Exception as e:
+    #     print(f'Training error: {e}')
+    #     return False
 
 def prediction(path):
     try: 
