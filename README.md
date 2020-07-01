@@ -9,3 +9,5 @@ To initialize after the template is created:
 ```
 python __init__.py
 ```
+
+[Demo video of the application](https://drive.google.com/file/d/1Dh2lj5yIAh18jfYGmTh-GMRqQNdFoax3/view?usp=sharing)
