@@ -1,10 +1,13 @@
 # Prediction of Covid-19 or Pneumonia
 Final work on image processing, using transfer learning to detect corona virus or pneumonia
 
-To initialize the first time, use the command: 
+If you let the model train, use the -t parameter as shown below: 
 ```
 python __init__.py -t
 ```
+If you let the model train, use the -t parameter as shown below:
+[trained model to download](https://drive.google.com/file/d/1WK8DlsR5CTU8szfEzmBXMs0Kmyjr-J8_/view?usp=sharing)
+
 To initialize after the template is created: 
 ```
 python __init__.py
