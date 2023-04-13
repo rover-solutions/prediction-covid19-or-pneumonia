@@ -1,5 +1,3 @@
-# Authors: Carlos Henrique Ponciano da Silva & Vinicius Luis da Silva
-# Base article: Adam Rosembrock - https://www.pyimagesearch.com/2020/03/16/detecting-covid-19-in-x-ray-images-with-keras-tensorflow-and-deep-learning/
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from keras import layers, optimizers, models
