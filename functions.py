@@ -1,4 +1,3 @@
-# Authors: Carlos Henrique Ponciano da Silva & Vinicius Luis da Silva
 from PIL import Image
 from os import listdir, path
 from os.path import isdir
