@@ -1,5 +1,5 @@
 # Prediction of Covid-19 or Pneumonia
-Final work on image processing, using transfer learning to detect corona virus or pneumonia
+using transfer learning to detect corona virus or pneumonia
 
 If you let the model train, use the -t parameter as shown below: 
 ```
